@@ -7,7 +7,7 @@ main.books1 = [];
 main.characters1 = [];
 main.houses1 = [];
 main.arr = [main.books1,main.characters1,main.houses1];
-console.log(main.books);
+
 
 this.baseUrl1 = 'https://www.anapioficeandfire.com/api/books';
 this.loadBooks = function(){

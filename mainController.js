@@ -1,12 +1,12 @@
 var app = angular.module('myApp', []);
-app.controller('mainController',['$scope','$http','$q',function($scope,$http,$q) {
+app.controller('mainController',['$http','$q',function($http,$q) {
 
 var main = this;
 
-main.books1 = [];
-main.characters1 = [];
-main.houses1 = [];
-main.arr = [main.books1,main.characters1,main.houses1];
+// this.books1 = [];
+// this.characters1 = [];
+// this.houses1 = [];
+this.arr = [];
 
 
 this.baseUrl1 = 'https://www.anapioficeandfire.com/api/books';
@@ -20,7 +20,7 @@ this.loadBooks = function(){
         console.log(response);
         console.log(response.data[1].name)
         main.books = response.data;
-        main.books1 += main.books;
+        main.arr.push(main.books);
 
       }, function errorCallback(response) {
         // called asynchronously if an error occurs
@@ -44,7 +44,7 @@ this.loadCharacters = function(){
         console.log(response);
         console.log(response.data[1].name)
         main.characters = response.data;
-        main.characters1 += main.characters;
+        main.arr.push(main.characters);
 
       }, function errorCallback(response) {
         // called asynchronously if an error occurs
@@ -66,7 +66,7 @@ this.loadHouses = function(){
         console.log(response);
         console.log(response.data[1].name)
         main.houses = response.data;
-        main.houses1 += main.houses;
+        main.arr.push(main.houses);
 
       }, function errorCallback(response) {
         // called asynchronously if an error occurs
@@ -78,9 +78,8 @@ this.loadHouses = function(){
 };
 
 
-console.log(main.books1);
-console.log(main.characters1);
-console.log(main.houses1);
+console.log(main.arr);
+
 
 
 

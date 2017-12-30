@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Game of Thrones</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.js"></script>
+
+
+    <style>
+    .navbar-brand {
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
+  }
+  #logo{
+    margin-top: -15px;
+    width: 30vw;
+  }
+  body {
+
+  background-image: url(img/1.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  }
+  table{
+    width: 100%;
+    color: white;
+  }
+
+  .white{
+    /* display: flex;
+    flex-wrap: wrap; */
+    color: ;
+    text-align: center;
+  }
+
+  .row{
+
+  }
+
+  .card{
+
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  }
+    </style>
+
+
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><img id="logo" src="img/logo.png" alt=""></a>
+        </div>
+      </div>
+    </nav>
+<br><br><br><br>
+
+
+
+
+  <div class="container">
+
+    <form>
+      <div class="form-group">
+     <label for="Select1">Example select</label>
+     <select class="form-control" id="Select1" ng-model="check">
+       <option >Select the data to load</option>
+       <option value=1>Load All</option>
+       <option value=2>Load Books</option>
+       <option value=3>Load Houses</option>
+       <option value=4>Load Characters</option>
+     </select>
+   </div>
+    </form>
+
+    <div ng-if="check == 1">
+      <span ng-controller="mainController as mainCtrl">
+        <div class="white" ng-repeat="x in mainCtrl.arr">
+          <div class="row">
+
+
+               <books-directive class="col" ng-if="x.isbn"></books-directive>
+
+
+
+                <characters-directive class="col" ng-if="x.gender"></characters-directive>
+
+
+
+                <houses-directive class="col" ng-if="x.region"></houses-directive>
+
+
+          </div>
+        </div>
+      </span>
+    </div>
+    <div ng-if="check == 2">
+      <span ng-controller="booksController as mainCtrl">
+        <div class="white" ng-repeat="x in mainCtrl.arr">
+          <div class="row">
+            <div class="col-lg-6">
+                <books-directive ng-if="x.isbn"></books-directive>
+            </div>
+          </div>
+        </div>
+      </span>
+    </div>
+    <div ng-if="check == 3">
+      <span ng-controller="housesController as mainCtrl">
+        <div class="white" ng-repeat="x in mainCtrl.arr">
+          <div class="row">
+            <div class="col-lg-6">
+                <houses-directive ng-if="x.region"></houses-directive>
+            </div>
+          </div>
+        </div>
+      </span>
+    </div>
+    <div ng-if="check == 4">
+      <span ng-controller="charactersController as mainCtrl">
+        <div class="white" ng-repeat="x in mainCtrl.arr">
+          <div class="row">
+            <div class="col-lg-6">
+                <characters-directive ng-if="x.gender"></characters-directive>
+            </div>
+          </div>
+        </div>
+      </span>
+    </div>
+
+
+
+  </div>
+
+  <div ng-view>
+
+  </div>
+
+  <!-- <button type="button" name="button" id="load">View More</button> -->
+
+
+    <script src="js/app.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="angular/controllers/mainController.js"></script>
+    <script src="angular/controllers/booksController.js"></script>
+    <script src="angular/controllers/charactersController.js"></script>
+    <script src="angular/controllers/housesController.js"></script>
+    <script src="angular/directives/customDirectives.js"></script>
+
+
+ </body>
+</html>
